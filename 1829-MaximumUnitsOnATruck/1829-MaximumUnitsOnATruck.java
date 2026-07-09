@@ -1,0 +1,20 @@
+// Last updated: 09/07/2026, 15:06:34
+class Solution {
+    public int maximumUnits(int[][] boxTypes, int truckSize) {
+        Arrays.sort(boxTypes, (a, b) -> b[1] - a[1]);
+        int n = boxTypes.length;
+        int totalUnits = 0;
+        for(int[] box : boxTypes){
+            int numberOfBoxes = box[0];
+            int numberOfUnitsPerBox = box[1];
+            int boxToTake = Math.min(numberOfBoxes,truckSize);
+            totalUnits += boxToTake * numberOfUnitsPerBox;
+            truckSize -= boxToTake;
+            if(truckSize == 0){
+                break;
+            }
+
+        }
+        return totalUnits;
+    }
+}
